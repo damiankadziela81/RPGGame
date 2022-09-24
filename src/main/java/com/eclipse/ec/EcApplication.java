@@ -19,14 +19,14 @@ import com.eclipse.ec.services.ForestServices;
 import com.eclipse.ec.services.ForestWithBossServices;
 import com.eclipse.ec.services.OldCastleService;
 
-//@SpringBootApplication
+@SpringBootApplication
 public class EcApplication {
 
-//	public static void main(String[] args) {
-//		SpringApplication.run(EcApplication.class, args);
-//	}
-
 	public static void main(String[] args) {
+		SpringApplication.run(EcApplication.class, args);
+	}
+
+	public static void mainA(String[] args) {
 		/*
 		 * Character zombie = new Character(); Character drac = new Vampire(); Vampire
 		 * dracula = new Vampire();

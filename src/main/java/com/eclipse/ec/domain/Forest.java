@@ -4,6 +4,7 @@ import com.eclipse.ec.repository.Character;
 import com.eclipse.ec.repository.Warrior;
 
 public class Forest extends Place implements Occurrenable {
+
 	private Character[] enemies;
 
 	public Forest() {
@@ -39,6 +40,7 @@ public class Forest extends Place implements Occurrenable {
 		fightGreetings();
 		fightActual(enemies, warrior);
 		fightOutcome(enemies, warrior);
+
 	}
 
 	private void fightGreetings() {
@@ -46,10 +48,12 @@ public class Forest extends Place implements Occurrenable {
 		System.out.println("Their names are: ");
 		for (int i = 0; i < enemies.length; i++) {
 			System.out.println(enemies[i].getName() + ", ");
+
 		}
 		System.out.println();
 		System.out.println("=======================================================================");
 		System.out.println("Fight!");
+
 	}
 
 	private void fightActual(Character[] enemies, Warrior warrior) {
@@ -73,4 +77,33 @@ public class Forest extends Place implements Occurrenable {
 			}
 		}
 	}
+
+	public String fightOnWeb(Warrior warrior) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Now you see " + enemies.length + " enemies.");
+		sb.append("Their names are: \n");
+		for (int i = 0; i < enemies.length; i++) {
+			sb.append(enemies[i].getName() + ", ");
+		}
+		sb.append("=======================================================================");
+		sb.append("Fight!");
+
+		for (int i = 0; i < enemies.length; i++) {
+			if (enemies[i].getInitiative() <= warrior.getInitiative()) {
+				int warriorHit = warrior.getHitPoints() + warrior.getWeapon().getExtraHit();
+				int hp = enemies[i].getHitPoints() - warriorHit;
+				enemies[i].setHitPoints(hp);
+			} else {
+				int hp = warrior.getHitPoints() - enemies[i].getHitPoints();
+				sb.append("You were wounded, HP = " + hp);
+				warrior.setHitPoints(hp);
+			}
+
+			if (enemies[i].getHitPoints() <= 0) {
+				sb.append("You have defeated " + enemies[i].getName());
+			}
+		}
+		return sb.toString();
+	}
+
 }
