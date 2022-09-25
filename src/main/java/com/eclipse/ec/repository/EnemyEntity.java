@@ -30,10 +30,10 @@ public class EnemyEntity {
 	private WeaponEntity weapon;
 	@JoinColumn(name = "immunity")
 	@ManyToOne(cascade = CascadeType.ALL)
-	private MaterialEntity material;
+	private MaterialEntity immunity;
 
 	public EnemyEntity(Integer id, String name, Integer initiative, Integer hitPoints, EnemyTypeEntity enemyType,
-			Integer regeneration, WeaponEntity weapon, MaterialEntity material) {
+			Integer regeneration, WeaponEntity weapon, MaterialEntity immunity) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -42,7 +42,7 @@ public class EnemyEntity {
 		this.enemyType = enemyType;
 		this.regeneration = regeneration;
 		this.weapon = weapon;
-		this.material = material;
+		this.immunity = immunity;
 	}
 
 	public EnemyEntity() {
@@ -106,16 +106,16 @@ public class EnemyEntity {
 	}
 
 	public MaterialEntity getMaterial() {
-		return material;
+		return immunity;
 	}
 
 	public void setMaterial(MaterialEntity material) {
-		this.material = material;
+		this.immunity = material;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(enemyType, hitPoints, id, initiative, material, name, regeneration, weapon);
+		return Objects.hash(enemyType, hitPoints, id, initiative, immunity, name, regeneration, weapon);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class EnemyEntity {
 		EnemyEntity other = (EnemyEntity) obj;
 		return Objects.equals(enemyType, other.enemyType) && Objects.equals(hitPoints, other.hitPoints)
 				&& Objects.equals(id, other.id) && Objects.equals(initiative, other.initiative)
-				&& Objects.equals(material, other.material) && Objects.equals(name, other.name)
+				&& Objects.equals(immunity, other.immunity) && Objects.equals(name, other.name)
 				&& Objects.equals(regeneration, other.regeneration) && Objects.equals(weapon, other.weapon);
 	}
 
@@ -137,7 +137,7 @@ public class EnemyEntity {
 	public String toString() {
 		return "EnemyEntity [id=" + id + ", name=" + name + ", initiative=" + initiative + ", hitPoints=" + hitPoints
 				+ ", enemyType=" + enemyType + ", regeneration=" + regeneration + ", weapon=" + weapon + ", material="
-				+ material + "]";
+				+ immunity + "]";
 	}
 
 }
